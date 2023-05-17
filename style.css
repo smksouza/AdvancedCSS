@@ -16,16 +16,38 @@
 }
 
 body {
-    font-family: var(--ff-texting);
+    font-family: var(--ff-heading);
     background-color: var(--bg-primary);
     color: var(--fc-primary);
     font-size: 1.6rem;
+}
+
+.page {
+    max-width: 33rem;
+    margin: 0 auto;
+}
+
+main {
+    display: grid;
+    gap: 3.2rem;
+    animation-name: downtop;
+    animation-duration: 700ms;
+    animation-delay: 350ms;
+    animation-fill-mode: backwards;
+}
+
+img {
+    width: 100%;
+    height: auto;
 }
 
 header {
     margin: 10rem 0 8rem;
     text-align: center;
     font-family: var(--ff-heading);
+    
+    animation-name: topdown;
+    animation-duration: 700ms;
 }
 
 header p {
@@ -41,4 +63,98 @@ header h1 {
     font-weight: 800;
     font-size: 4rem;
     line-height: 4.8rem;
+}
+
+.card {
+    position: relative;
+}
+
+.card img {
+    height: 41.6rem;
+    object-fit: cover;
+    border-radius: 6px;
+    transition: 0.2s;
+    position: relative;
+}
+
+.card img:hover {
+    transform: scale(1.1);
+    z-index: 1;
+}
+
+.card h2 {
+    position: absolute;
+    bottom: 5.2rem;
+    left: 2.8rem;
+    font-size: 4rem;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    gap: 2.8rem;
+    z-index: 2;
+}
+
+.card h2 span {
+    border-radius: 2rem;
+    background-color: var(--fc-primary);
+    font-size: 1.6rem;
+    color: #090039;
+    padding: 0 1.6rem;
+    height: 3.8rem;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+@keyframes topdown {
+    0% {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes downtop {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (min-width: 768px) {
+    main {
+        grid-template-areas: "imgA imgB imgB"
+        "imgC imgC imgD";
+    }
+
+    main div:nth-child(1) {
+        grid-area: imgA;
+    }
+
+    main div:nth-child(2) {
+        grid-area: imgB;
+    }
+
+    main div:nth-child(3) {
+        grid-area: imgC;
+    }
+
+    main div:nth-child(4) {
+        grid-area: imgD;
+    }
+
+    .page {
+        max-width: 170rem;
+        padding: 0 5rem;
+    }
+    header h1 {
+        font-size: 5.6rem;
+    }
 }
